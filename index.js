@@ -11,9 +11,11 @@ client.connect()
 app.get('/articles', (req, res)=>{
     try{
         client.query(`Select * from article`, (err, result)=>{
-            
-            res.send(result.rows);
-            
+            if(!err){
+                res.send(result.rows);
+            }else{
+                console.log(err)
+            }
         });
         client.end;
     }catch(e){
@@ -26,9 +28,11 @@ app.get('/articles/:bardecode', (req, res)=>{
     try{
         client.query(`Select * from article where barecode='${req.params.bardecode}'`, (err, result)=>{
         
-            
-            res.send(result.rows);
-            
+            if(!err){
+                res.send(result.rows);
+            }else{
+                console.log(err)
+            }
         });
         client.end;
     }catch(e){
